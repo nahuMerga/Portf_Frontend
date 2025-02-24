@@ -9,6 +9,7 @@ axios.defaults.withCredentials = true;
 const api = axios.create({
     baseURL: `${BASE_URL}/portf_api/`, 
     headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
         'Content-Type': 'application/json',
     },
     withCredentials: true 
