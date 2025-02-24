@@ -1,0 +1,384 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 50% 3%;
+    --foreground: 200 10% 97%;
+    --card: 200 50% 3%;
+    --card-foreground: 200 10% 97%;
+    --popover: 200 45% 6%;
+    --popover-foreground: 200 10% 97%;
+    --primary: 200 100% 50%;
+    --primary-foreground: 200 10% 97%;
+    --secondary: 48 100% 50%;
+    --secondary-foreground: 200 50% 3%;
+    --muted: 200 45% 12%;
+    --muted-foreground: 200 10% 63%;
+    --accent: 200 71% 45%;
+    --accent-foreground: 200 10% 97%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 200 10% 97%;
+    --border: 200 45% 12%;
+    --input: 200 45% 12%;
+    --ring: 200 100% 50%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-primary/20;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/30 backdrop-blur-xl border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)];
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #2d3748;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+@layer components {
+  /* Admin specific dark theme components */
+  .admin-sidebar {
+    @apply fixed top-0 left-0 h-full bg-background/30 backdrop-blur-xl border-r border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] transition-all duration-300 ease-in-out z-20;
+  }
+
+  .admin-navbar {
+    @apply sticky top-0 z-10 bg-background/30 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] transition-all duration-300;
+  }
+
+  .admin-card {
+    @apply bg-background/30 backdrop-blur-xl border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] p-6 rounded-xl transition-all duration-300 hover:shadow-xl;
+  }
+
+  .admin-button {
+    @apply bg-background/30 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/20;
+  }
+
+  .admin-input {
+    @apply bg-background/30 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg focus:ring-2 ring-primary/30;
+  }
+
+  .admin-grid {
+    @apply grid gap-6 p-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .admin-chart-card {
+    @apply bg-background/30 backdrop-blur-xl border border-black/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] p-6 rounded-xl;
+  }
+
+  .admin-table {
+    @apply w-full border-collapse;
+  }
+
+  .admin-table th {
+    @apply text-left p-3 border-b border-black/10 text-muted-foreground;
+  }
+
+  .admin-table td {
+    @apply p-3 border-b border-black/10;
+  }
+
+  .admin-table tr:hover {
+    @apply bg-black/5;
+  }
+
+    /* Meme Card Styles */
+    .meme-card {
+      @apply glass-effect overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+      animation: cardAppear 0.6s ease-out;
+    }
+  
+    .meme-image-container {
+      @apply relative overflow-hidden aspect-[4/3];
+    }
+  
+    .meme-image {
+      @apply w-full h-full object-cover transition-transform duration-300;
+    }
+  
+    .meme-card:hover .meme-image {
+      @apply scale-105;
+    }
+  
+    .reaction-button {
+      @apply flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200
+             hover:bg-white/5 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+  
+    .reaction-button.active {
+      @apply bg-white/5;
+    }
+  
+    .reaction-button:hover:not(:disabled) {
+      @apply transform -translate-y-0.5;
+    }
+  
+    .comment-section {
+      @apply space-y-4 max-h-[300px] overflow-y-auto custom-scrollbar pr-2;
+      scroll-behavior: smooth;
+    }
+  
+    .comment-bubble {
+      @apply flex gap-3 p-3 rounded-lg bg-white/5 backdrop-blur-sm
+             border border-white/10 transition-all duration-200
+             hover:bg-white/10 animate-slide-up;
+    }
+  
+    .comment-input {
+      @apply w-full bg-white/5 backdrop-blur-sm text-sm px-4 py-2.5 rounded-full
+             border border-white/10 transition-all duration-200
+             focus:outline-none focus:ring-2 focus:ring-primary/50
+             placeholder:text-gray-500 text-foreground
+             disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+  
+    @keyframes cardAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    /* Reaction Animation */
+    .reaction-button svg {
+      @apply transition-transform duration-200;
+    }
+  
+    .reaction-button:active:not(:disabled) svg {
+      animation: reactionPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  
+    .reaction-button.active svg {
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+  
+    @keyframes reactionPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+
+    .admin-sidebar {
+      @apply fixed top-0 left-0 h-full glass backdrop-blur-xl border-r border-white/10 
+             shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] transition-all duration-300 ease-in-out z-20;
+    }
+  
+    .admin-navbar {
+      @apply sticky top-0 z-10 glass backdrop-blur-xl border-b border-white/10 
+             shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)] transition-all duration-300;
+    }
+  
+    .admin-card {
+      @apply glass p-6 rounded-xl transition-all duration-300 hover:shadow-xl
+             hover:shadow-primary/5 backdrop-blur-xl border border-white/10;
+    }
+  
+    .admin-button {
+      @apply bg-primary/20 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg 
+             transition-all duration-300 hover:bg-primary/30 hover:scale-105 active:scale-95
+             disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+    }
+  
+    .admin-input {
+      @apply bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg
+             transition-all duration-200 focus:ring-2 ring-primary/30 w-full
+             placeholder:text-muted-foreground text-foreground;
+    }
+  
+    .admin-grid {
+      @apply grid gap-6 p-6;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  
+    .admin-chart-card {
+      @apply glass p-6 rounded-xl hover:shadow-xl hover:shadow-primary/5
+             backdrop-blur-xl border border-white/10 transition-all duration-300;
+    }
+  
+    .admin-table {
+      @apply w-full border-collapse;
+    }
+  
+    .admin-table th {
+      @apply text-left p-3 border-b border-white/10 text-muted-foreground font-medium;
+    }
+  
+    .admin-table td {
+      @apply p-3 border-b border-white/10 text-foreground/80;
+    }
+  
+    .admin-table tbody tr {
+      @apply transition-colors duration-200;
+    }
+  
+    .admin-table tbody tr:hover {
+      @apply bg-white/5;
+    }
+  
+    .admin-stat-card {
+      @apply glass p-6 rounded-xl flex items-start justify-between
+             hover:shadow-xl hover:shadow-primary/5 transition-all duration-300;
+    }
+  
+    .admin-nav-button {
+      @apply w-full flex items-center px-4 py-3 transition-all duration-200
+             hover:bg-primary/10 rounded-lg gap-3
+             text-muted-foreground hover:text-primary;
+    }
+  
+    .admin-nav-button.active {
+      @apply bg-primary/20 text-primary;
+    }
+  
+    .admin-content-header {
+      @apply flex items-center justify-between mb-6 pb-4 border-b border-white/10;
+    }
+  
+    .admin-section-title {
+      @apply text-xl font-semibold text-foreground flex items-center gap-2;
+    }
+  
+    .admin-action-button {
+      @apply flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200
+             bg-primary/20 hover:bg-primary/30 text-primary
+             active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+  
+    .admin-icon-button {
+      @apply p-2 rounded-lg transition-colors duration-200
+             hover:bg-primary/20 text-muted-foreground hover:text-primary;
+    }
+  
+    .admin-search {
+      @apply w-full bg-white/5 backdrop-blur-sm text-sm px-4 py-2.5 rounded-lg
+             border border-white/10 transition-all duration-200
+             focus:outline-none focus:ring-2 focus:ring-primary/50
+             placeholder:text-muted-foreground text-foreground;
+    }
+  
+    .admin-dropdown {
+      @apply bg-background/95 backdrop-blur-xl border border-white/10 rounded-lg
+             shadow-lg p-1 animate-in fade-in-80 select-none;
+    }
+  
+    .admin-dropdown-item {
+      @apply relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5
+             text-sm outline-none transition-colors
+             hover:bg-primary/20 hover:text-primary
+             focus:bg-primary/20 focus:text-primary;
+    }
+  
+}
