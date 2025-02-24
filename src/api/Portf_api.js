@@ -9,7 +9,6 @@ axios.defaults.withCredentials = true;
 const api = axios.create({
     baseURL: `${BASE_URL}/portf_api/`, 
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
         'Content-Type': 'application/json',
     },
     withCredentials: true 
@@ -39,7 +38,7 @@ const handleTokenRefresh = async () => {
     }
 
     try {
-        const response = await axios.post(`${BASE_URL}token/refresh/`, {
+        const response = await axios.post(`${BASE_URL}/portf_api/token/refresh/`, {
             refresh: refreshToken
         });
 
@@ -88,7 +87,7 @@ api.interceptors.response.use(
 
 export const login = async (credentials) => {
     try {
-        const response = await axios.post(`${BASE_URL}login/`, credentials);
+        const response = await axios.post(`${BASE_URL}/portf_api/login/`, credentials);
 
         // ✅ Ensure tokens are stored correctly
         if (response.data.access_token && response.data.refresh_token) {
