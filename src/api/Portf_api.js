@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://portf-5d0eframm-nahomers-projects.vercel.app'
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 // Enable credentials in requests
 axios.defaults.withCredentials = true;
